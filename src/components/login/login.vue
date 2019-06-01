@@ -60,6 +60,8 @@ export default {
               });
               //跳转到主页
               this.$router.push("home");
+              //保存localStorage
+              localStorage.setItem('token',res.data.data.token)
             } else {
               this.$message.error(meta.msg);
             }
