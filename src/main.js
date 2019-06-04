@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import ElementUI from 'element-ui'
+//引入element-tree-grid 插件
+import ElTreeGrid from 'element-tree-grid'
 //引入elementUi的样式文件
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
@@ -10,12 +12,16 @@ import router from './router'
 import myaxios from './assets/js/myaixos.js'
 //引入css样式
 import './assets/css/index.css'
+
 // 使用axios插件
 Vue.use(myaxios)
 // 使用ElementUI
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+
+//使用全局element-tree-grid
+Vue.component(ElTreeGrid.name,ElTreeGrid)
 
 /* eslint-disable no-new */
 new Vue({

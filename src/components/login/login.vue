@@ -37,9 +37,7 @@ export default {
         username: [
           { required: true, message: "请输入用户名", trigger: "blur" }
         ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" }
-        ]
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
     };
   },
@@ -58,10 +56,11 @@ export default {
                 message: meta.msg,
                 type: "success"
               });
+
+              //保存localStorage
+              localStorage.setItem("token", res.data.data.token);
               //跳转到主页
               this.$router.push("home");
-              //保存localStorage
-              localStorage.setItem('token',res.data.data.token)
             } else {
               this.$message.error(meta.msg);
             }

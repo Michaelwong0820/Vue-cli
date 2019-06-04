@@ -12,12 +12,15 @@ import Rights from '../components/rights/rights.vue'
 //引入 roles 组件
 import Roles from '../components/roles/roles.vue'
 //引入 goodslist 组件
-import Goodslist from '../components/goodslist/goodslist.vue'
-
+import Goods from '../components/goods/goods.vue'
+//引入categories 组件
+import Categories from '../components/categories/categories.vue'
+//引入message  
+import { Message } from 'element-ui'
 
 Vue.use(Router)
 
-export default new Router({
+var router = new Router({
   routes: [
     //重定向根目录
     {path: '/',redirect: {name:'home'}},
@@ -27,7 +30,30 @@ export default new Router({
       {path:'/users',name:'users',component:Users},//给home添加子路由 users
       {path:'/rights',name:'rights',component:Rights},//给home添加子路由 rights
       {path:'/roles',name:'roles',component:Roles},//给home添加子路由 roles
-      {path:'/goodslist',name:'goodslist',component:Goodslist},//给home添加子路由 goodslist
+      {path:'/goods',name:'goodslist',component:Goods},//给home添加子路由 goodslist
+      {path:'/categories',name:'categories',component:Categories},//给home添加子路由 categories
     ]},
-  ]
+  ],
 })
+//设置页面导航卫士
+router.beforeEach((to,from,next)=>{
+  // console.log(to);
+  // console.log(from);
+  //如果当前页面不是登录页面时执行下面代码
+  if(to.path !='/login') {
+    if (!localStorage.getItem('token')) {
+      Message({
+        type:'error',
+        message:'还没有登录'
+      })
+      //跳转到登录页面
+      router.push({name:'login'})
+      return
+    }
+  }
+  next()
+  
+  
+})
+
+export default router
