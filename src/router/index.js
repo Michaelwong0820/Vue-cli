@@ -11,6 +11,8 @@ import Users from '../components/users/users.vue'
 import Rights from '../components/rights/rights.vue'
 //引入 roles 组件
 import Roles from '../components/roles/roles.vue'
+//引入 goodslist 组件
+import Goodslist from '../components/goodslist/goodslist.vue'
 
 
 Vue.use(Router)
@@ -24,7 +26,8 @@ export default new Router({
     children:[
       {path:'/users',name:'users',component:Users},//给home添加子路由 users
       {path:'/rights',name:'rights',component:Rights},//给home添加子路由 rights
-      {path:'/roles',name:'roles',component:Roles}//给home添加子路由 roles
+      {path:'/roles',name:'roles',component:Roles},//给home添加子路由 roles
+      {path:'/goodslist',name:'goodslist',component:Goodslist},//给home添加子路由 goodslist
     ]},
   ]
 })

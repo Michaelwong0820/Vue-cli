@@ -11,7 +11,7 @@
       </el-col>
       <el-col :span="16">
         &nbsp;
-        <el-button type="success" plain @click="add">添加用户</el-button>
+        <el-button type="success" plain @click="cancel();add()">添加用户</el-button>
       </el-col>
     </el-row>
     <!-- 用户数据表单 -->
@@ -74,7 +74,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="cancel();AddForm=false">取 消</el-button>
+        <el-button @click="AddForm=false">取 消</el-button>
         <el-button type="primary" @click="postAdd">确 定</el-button>
       </div>
     </el-dialog>
@@ -146,10 +146,10 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: "请输入活动名称", trigger: "blur" }
+          { required: true, message: "请输入用户名", trigger: "blur" }
         ],
         password: [
-          { required: true, message: "请输入活动名称", trigger: "blur" }
+          { required: true, message: "请输入密码", trigger: "blur" }
         ]
       },
       formLabelWidth: "100px", //文本宽度
