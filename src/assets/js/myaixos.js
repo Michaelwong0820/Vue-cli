@@ -1,6 +1,4 @@
 //自己封装axios插件
-//导入vue
-import Vue from 'vue'
 //导入axios
 import axios from 'axios'
 

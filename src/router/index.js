@@ -15,6 +15,8 @@ import Roles from '../components/roles/roles.vue'
 import Goods from '../components/goods/goods.vue'
 //引入categories 组件
 import Categories from '../components/categories/categories.vue'
+//引入goodsadd 组件
+import Goodsadd from '../components/goodsadd/goodsadd.vue'
 //引入message  
 import { Message } from 'element-ui'
 
@@ -32,6 +34,7 @@ var router = new Router({
       {path:'/roles',name:'roles',component:Roles},//给home添加子路由 roles
       {path:'/goods',name:'goodslist',component:Goods},//给home添加子路由 goodslist
       {path:'/categories',name:'categories',component:Categories},//给home添加子路由 categories
+      {path:'/goods/add',name:'goodsadd',component:Goodsadd},//给home添加子路由 goodsadd
     ]},
   ],
 })
