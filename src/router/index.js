@@ -17,8 +17,13 @@ import Goods from '../components/goods/goods.vue'
 import Categories from '../components/categories/categories.vue'
 //引入goodsadd 组件
 import Goodsadd from '../components/goodsadd/goodsadd.vue'
+//引入orders 组件
+import Orders from '../components/orders/orders.vue'
+//引入reports 组件
+import Reports from '../components/reports/reports.vue'
 //引入message  
 import { Message } from 'element-ui'
+
 
 Vue.use(Router)
 
@@ -35,6 +40,8 @@ var router = new Router({
       {path:'/goods',name:'goodslist',component:Goods},//给home添加子路由 goodslist
       {path:'/categories',name:'categories',component:Categories},//给home添加子路由 categories
       {path:'/goods/add',name:'goodsadd',component:Goodsadd},//给home添加子路由 goodsadd
+      {path:'/orders',name:'orders',component:Orders},//给home添加子路由 orders
+      {path:'/reports',name:'reports',component:Reports}//给home添加子路由 reports
     ]},
   ],
 })

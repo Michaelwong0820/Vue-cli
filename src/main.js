@@ -22,6 +22,9 @@ import '../node_modules/quill/dist/quill.core.css'
 import '../node_modules/quill/dist/quill.snow.css'
 import '../node_modules/quill/dist/quill.bubble.css'
 
+//引入地图组件
+import BMap from 'BMap';
+
 Vue.use(VueQuillEditor)
 
 // 使用axios插件
@@ -35,6 +38,7 @@ Vue.config.productionTip = false
 
 //使用全局element-tree-grid
 Vue.component(ElTreeGrid.name,ElTreeGrid)
+
 
 /* eslint-disable no-new */
 new Vue({

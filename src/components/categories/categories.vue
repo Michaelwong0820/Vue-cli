@@ -16,7 +16,7 @@
         parentKey: 当前元素的父元素
         levelKey: 当前元素的级别
     -->
-    <el-table :border="true" :data="pagelist" style="width: 100%;height:200px">
+    <el-table :border="true" :data="pagelist" style="width: 100%" height="310">
       <el-table-tree-column
         file-icon="icon icon-file"
         prop="cat_name"
@@ -24,17 +24,17 @@
         treeKey="cat_id"
         parentKey="cat_pid"
         levelKey="cat_level"
-        fixed
+        
       ></el-table-tree-column>
       <el-table-column  label="级别" fixed>
         <template
           slot-scope="scope"
         >{{scope.row.cat_level==0?"一级":scope.row.cat_level ==1 ?"二级":"三级"}}</template>
       </el-table-column>
-      <el-table-column prop="address" label="是否有效" fixed>
+      <el-table-column prop="address" label="是否有效" >
         <template slot-scope="scope">{{scope.row.cat_deleted?"过期":"有效"}}</template>
       </el-table-column>
-      <el-table-column prop="address" label="操作" fixed>
+      <el-table-column prop="address" label="操作" >
         <el-button type="primary" size="mini" icon="el-icon-edit" plain></el-button>
         <el-button type="danger" size="mini" icon="el-icon-delete" plain></el-button>
       </el-table-column>

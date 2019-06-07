@@ -16,21 +16,26 @@
     <el-tabs class="tabs" tab-position="left" @tab-click="handleClick" value="first">
       <el-tab-pane label="基本信息" name="first">
         <!-- 基本信息 -->
-        <el-form label-width="80px" :rules="rules" ref="ruleForm" label-position="top">
+        <el-form
+          label-width="80px"
+          :model="goodsList"
+          :rules="rules"
+          ref="ruleForm"
+          label-position="top"
+        >
           <el-form-item prop="goods_name" label="商品名称">
-            <el-input></el-input>
+            <el-input v-model="goodsList.goods_name"></el-input>
           </el-form-item>
           <el-form-item prop="goods_price" label="商品价格">
-            <el-input></el-input>
+            <el-input v-model="goodsList.goods_price"></el-input>
           </el-form-item>
           <el-form-item prop="goods_weight" label="商品重量">
-            <el-input></el-input>
+            <el-input v-model="goodsList.goods_weight"></el-input>
           </el-form-item>
           <el-form-item prop="goods_number" label="商品数量">
-            <el-input></el-input>
+            <el-input v-model="goodsList.goods_number"></el-input>
           </el-form-item>
           <el-form-item prop="goods_cate" label="商品分类">
-            {{category}}
             <el-cascader v-model="category" :options="options" :props="props"></el-cascader>
           </el-form-item>
         </el-form>
@@ -66,7 +71,7 @@
           list-type="picture"
           multiple
           :headers="hearders"
-          :on-success="handlePreview"
+          :on-success="handleSuccess"
           :on-remove="handleRemove"
           :on-preview="preview"
         >
@@ -74,9 +79,9 @@
         </el-upload>
       </el-tab-pane>
       <el-tab-pane label="商品内容" name="fifth">
-        <el-button type="success" plain>添加商品</el-button>
+        <el-button type="success" @click="addGoods" plain>添加商品</el-button>
         <!-- 添加富文本框 -->
-        <quill-editor></quill-editor>
+        <quill-editor v-model="content"></quill-editor>
       </el-tab-pane>
     </el-tabs>
     <!-- 图片预浏览 -->
@@ -95,13 +100,13 @@ export default {
   data() {
     return {
       active: 0,
-      ruleForm: {
-        //用户信息
+      goodsList: {
         goods_name: "",
         goods_price: "",
         goods_weight: "",
         goods_number: ""
       },
+
       //用户验证
       rules: {
         goods_name: [
@@ -116,11 +121,11 @@ export default {
         goods_number: [
           { required: true, message: "请输入商品数量", trigger: "blur" }
         ],
-        goods_cate: [{ required: true, trigger: "blur" }]
+        goods_cate: [{ required: true,  message: "请输入商品类型",trigger: "blur" }]
       },
       options: [],
       props: {
-        expandTrigger: 'hover' ,
+        expandTrigger: "hover",
         value: "cat_id",
         label: "cat_name"
       },
@@ -130,6 +135,7 @@ export default {
       checked: true,
       fileList: [], //上传图片数据
       dialogImg: false, //图片预浏览的状态
+      content: "富文本内容", //富文本内容
       hearders: {
         Authorization: localStorage.getItem("token")
       }
@@ -177,7 +183,7 @@ export default {
       }
     },
     //上传图片
-    handlePreview(res, file) {
+    handleSuccess(res, file) {
       //将上传的图片保存的fileList
       this.fileList.push({ name: file.name, url: file.url });
     },
@@ -194,8 +200,40 @@ export default {
       this.dialogImg = true;
       this.$nextTick(function() {
         //在数据下次更新时打开
+        //通过dom操作
         this.$refs.myimg.src = file.url;
       });
+    },
+    //提交数据
+    addGoods() {
+      this.$refs.ruleForm.validate( async vaild=> {
+        if (vaild) {
+          //数据对象
+          let addObj = {
+            goods_name: this.goodsList.goods_name,
+            goods_price: this.goodsList.goods_price,
+            goods_number: this.goodsList.goods_number,
+            goods_weight: this.goodsList.goods_weight,
+            goods_cat: this.category.join(","),
+            goods_introduce: this.content
+          };
+          let res = await this.$http.post("goods", addObj);
+          //解构
+          let { meta, data } = res.data;
+          if (meta.status == 201) {
+            this.$message({
+              type: "success",
+              message: meta.msg
+            });
+            //跳转到商品列表
+            this.$router.push("/goods");
+          } else {
+            this.$message.error(meta.msg);
+          }
+        } else {
+          this.$message.error("参数有误");
+        }
+      })
     }
   },
   mounted() {
@@ -226,5 +264,4 @@ $height: 20px;
 .ql-editor {
   height: 500px;
 }
-
 </style>
