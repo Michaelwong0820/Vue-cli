@@ -26,7 +26,9 @@ module.exports = {
     app: './src/main.js'
   },
   externals: {
-    "BMap": "BMap"
+    "BMap": "BMap",
+    "vue":"Vue",
+    "element-ui": "ELEMENT"
   },
   output: {
     path: config.build.assetsRoot,

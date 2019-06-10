@@ -2,7 +2,6 @@
   <el-row>
     <el-col :span="4">
       <div class="mycol">
-        <img src="../../../../static/logo.png" alt>
       </div>
     </el-col>
     <el-col :span="16">

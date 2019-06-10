@@ -2,25 +2,25 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 引入login组件
-import Login from '../components/login/login.vue'
+const Login = () => import('../components/login/login.vue')
 // 引入home组件
-import Home from '../components/home/home.vue'
+const Home = () => import('../components/home/home.vue')
 //引入 users 组件
-import Users from '../components/users/users.vue'
+const Users = () => import('../components/users/users.vue')
 //引入 rights 组件
-import Rights from '../components/rights/rights.vue'
+const Rights = () => import('../components/rights/rights.vue')
 //引入 roles 组件
-import Roles from '../components/roles/roles.vue'
+const Roles = () => import('../components/roles/roles.vue')
 //引入 goodslist 组件
-import Goods from '../components/goods/goods.vue'
+const Goods = () => import('../components/goods/goods.vue')
 //引入categories 组件
-import Categories from '../components/categories/categories.vue'
+const Categories = () => import('../components/categories/categories.vue')
 //引入goodsadd 组件
-import Goodsadd from '../components/goodsadd/goodsadd.vue'
+const Goodsadd = () => import('../components/goodsadd/goodsadd.vue')
 //引入orders 组件
-import Orders from '../components/orders/orders.vue'
+const Orders = () => import('../components/orders/orders.vue')
 //引入reports 组件
-import Reports from '../components/reports/reports.vue'
+const Reports = () => import('../components/reports/reports.vue')
 //引入message  
 import { Message } from 'element-ui'
 
